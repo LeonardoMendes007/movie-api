@@ -16,6 +16,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.HasIndex(x => x.UserName).IsUnique();
 
+        builder.HasMany(e => e.MovieRatings)
+        .WithMany(e => e.UserRatings)
+        .UsingEntity<Rating>();
+
         builder.HasMany(e => e.FavoritesMovies)
             .WithMany(e => e.FavoritesUsers)
             .UsingEntity("tb_favorites_movies");

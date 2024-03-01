@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MovieApp.Domain.Entities.@base;
 
 namespace MovieApp.Domain.Entities;
 public class Movie : Entity
@@ -13,6 +9,7 @@ public class Movie : Entity
     public int Views { get; set; }
     public DateTime CreatedDate { get; set;} = DateTime.Now;
     public DateTime UpdatedDate { get; set;}
+    public IEnumerable<User> UserRatings { get; set; }
     public IEnumerable<Rating> Ratings { get; set; }
     public IEnumerable<User> FavoritesUsers { get; set; }
     public IEnumerable<Genre> Genries { get; set; }

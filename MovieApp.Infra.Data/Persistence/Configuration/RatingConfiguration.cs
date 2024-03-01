@@ -13,6 +13,8 @@ public class RatingConfiguration : IEntityTypeConfiguration<Rating>
         builder.Property(x => x.CreatedDate).HasColumnName("dt_create").IsRequired();
         builder.Property(x => x.UpdatedDate).HasColumnName("dt_update");
 
+        builder.HasKey(x => new {x.UserId, x.MovieId});
+
 
     }
 }

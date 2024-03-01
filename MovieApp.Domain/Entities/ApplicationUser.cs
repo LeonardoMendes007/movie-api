@@ -1,7 +1,8 @@
-﻿namespace MovieApp.Domain.Entities;
+﻿using Microsoft.AspNetCore.Identity;
 
-public class ApplicationUser 
+namespace MovieApp.Domain.Entities;
+public class ApplicationUser : IdentityUser
 {
-    public User User { get; set; }
     public Guid UserId { get; set; }
+    public User User { get; set; }
 }

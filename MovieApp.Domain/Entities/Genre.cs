@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MovieApp.Domain.Entities.@base;
 
 namespace MovieApp.Domain.Entities;
 public class Genre : Entity

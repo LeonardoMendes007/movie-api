@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MovieApp.Infra.Data.Persistence;
 using MovieApp.Infra.IoC.AutoMapperConfig;
+using MovieApp.Infra.CrossCutting.Identity.IndentityConfiguration;
 
 namespace MovieApp.Infra.IoC.DependencyInjection;
 public static class DependencyInjection
@@ -13,6 +14,10 @@ public static class DependencyInjection
         #region Banco de dados
         services.AddDbContext<MovieAppDbContext>(options =>
            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        #endregion
+
+        #region Identity
+        services.AddApiIdentityConfiguration(configuration);
         #endregion
 
         #region MediatR

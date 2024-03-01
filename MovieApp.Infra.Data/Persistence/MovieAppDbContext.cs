@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MovieApp.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieApp.Infra.Data.Persistence;
-public sealed class MovieAppDbContext : DbContext
+public sealed class MovieAppDbContext : IdentityDbContext<ApplicationUser>
 {
     public DbSet<User> Users { get; set; } = default!;
 

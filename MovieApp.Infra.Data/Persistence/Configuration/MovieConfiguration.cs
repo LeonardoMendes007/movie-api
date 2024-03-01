@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MovieApp.Domain.Entities;
+using System.Reflection.Emit;
 
 namespace MovieApp.Infra.Data.Persistence.Configuration;
 public class MovieConfiguration : IEntityTypeConfiguration<Movie>
@@ -18,9 +19,15 @@ public class MovieConfiguration : IEntityTypeConfiguration<Movie>
 
         builder.HasIndex(x => new { x.Name, x.ReleaseDate}).IsUnique();
 
+        builder.HasMany(e => e.UserRatings)
+        .WithMany(e => e.MovieRatings)
+        .UsingEntity<Rating>();
+
         builder.HasMany(e => e.Genries)
            .WithMany(e => e.Movies)
            .UsingEntity("tb_genre_movie");
+
+        
 
 
     }
