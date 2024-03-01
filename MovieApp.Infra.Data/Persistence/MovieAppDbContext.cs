@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace MovieApp.Infra.Data.Persistence;
 public sealed class MovieAppDbContext : IdentityDbContext<ApplicationUser>
 {
-    public DbSet<User> Users { get; set; } = default!;
+    public DbSet<ApplicationUser> Users { get; set; } = default!;
 
     public DbSet<Movie> Movies { get; set; } = default!;
 

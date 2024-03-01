@@ -15,8 +15,6 @@
     <Folder Include="Handlers\CommandHandlers\" />
     <Folder Include="Handlers\QueriesHandlers\" />
     <Folder Include="Queries\" />
-    <Folder Include="Responses\Rating\" />
-    <Folder Include="Responses\User\" />
   </ItemGroup>
 
   <ItemGroup>

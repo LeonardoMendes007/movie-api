@@ -19,8 +19,8 @@ public class MovieConfiguration : IEntityTypeConfiguration<Movie>
 
         builder.HasIndex(x => new { x.Name, x.ReleaseDate}).IsUnique();
 
-        builder.HasMany(e => e.UserRatings)
-        .WithMany(e => e.MovieRatings)
+        builder.HasMany(e => e.UserRating)
+        .WithMany(e => e.MoviesRating)
         .UsingEntity<Rating>();
 
         builder.HasMany(e => e.Genries)

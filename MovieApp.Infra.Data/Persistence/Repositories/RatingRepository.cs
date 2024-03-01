@@ -44,6 +44,6 @@ public class RatingRepository : IRatingRepository
 
     public async Task CommitAsync()
     {
-        throw new NotImplementedException();
+        _dbContext.SaveChanges();
     }
 }

@@ -167,7 +167,12 @@ namespace MovieApp.Infra.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreateDate");
+
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -203,14 +208,19 @@ namespace MovieApp.Infra.Data.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdateDate");
 
                     b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -220,7 +230,8 @@ namespace MovieApp.Infra.Data.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserName")
+                        .IsUnique();
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -291,8 +302,8 @@ namespace MovieApp.Infra.Data.Migrations
 
             modelBuilder.Entity("MovieApp.Domain.Entities.Rating", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<Guid>("MovieId")
                         .HasColumnType("uniqueidentifier");
@@ -323,47 +334,13 @@ namespace MovieApp.Infra.Data.Migrations
                     b.ToTable("tb_rating", (string)null);
                 });
 
-            modelBuilder.Entity("MovieApp.Domain.Entities.User", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(36)
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("id");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("dt_create");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("dt_update");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("name");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserName")
-                        .IsUnique();
-
-                    b.ToTable("tb_user", (string)null);
-                });
-
             modelBuilder.Entity("tb_favorites_movies", b =>
                 {
                     b.Property<Guid>("FavoritesMoviesId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("FavoritesUsersId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("FavoritesUsersId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("FavoritesMoviesId", "FavoritesUsersId");
 
@@ -438,17 +415,6 @@ namespace MovieApp.Infra.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MovieApp.Domain.Entities.ApplicationUser", b =>
-                {
-                    b.HasOne("MovieApp.Domain.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("MovieApp.Domain.Entities.Rating", b =>
                 {
                     b.HasOne("MovieApp.Domain.Entities.Movie", "Movie")
@@ -457,8 +423,8 @@ namespace MovieApp.Infra.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MovieApp.Domain.Entities.User", "User")
-                        .WithMany("RatingMovies")
+                    b.HasOne("MovieApp.Domain.Entities.ApplicationUser", "User")
+                        .WithMany("Ratings")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -476,7 +442,7 @@ namespace MovieApp.Infra.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MovieApp.Domain.Entities.User", null)
+                    b.HasOne("MovieApp.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("FavoritesUsersId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -498,14 +464,14 @@ namespace MovieApp.Infra.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MovieApp.Domain.Entities.Movie", b =>
+            modelBuilder.Entity("MovieApp.Domain.Entities.ApplicationUser", b =>
                 {
                     b.Navigation("Ratings");
                 });
 
-            modelBuilder.Entity("MovieApp.Domain.Entities.User", b =>
+            modelBuilder.Entity("MovieApp.Domain.Entities.Movie", b =>
                 {
-                    b.Navigation("RatingMovies");
+                    b.Navigation("Ratings");
                 });
 #pragma warning restore 612, 618
         }
