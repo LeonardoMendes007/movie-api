@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieApp.Infra.Data.Persistence.Repositories;
-public class GenreRepository
+namespace MovieApp.Domain.Entities;
+public abstract class Entity
 {
+    public Guid Id { get; private set; }
 }

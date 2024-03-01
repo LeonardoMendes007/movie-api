@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieApp.Infra.Data.Persistence;
-public class MovieAppDbContext : DbContext
+public sealed class MovieAppDbContext : DbContext
 {
     public DbSet<User> Users { get; set; } = default!;
 
     public DbSet<Movie> Movies { get; set; } = default!;
 
-    public DbSet<Rate> Rates { get; set; } = default!;
+    public DbSet<Rating> Ratings { get; set; } = default!;
 
     public DbSet<Genre> Genres { get; set; } = default!;
 

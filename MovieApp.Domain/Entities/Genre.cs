@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieApp.Domain.Entities;
-public class Genre
+public class Genre : Entity
 {
-    public Guid Id { get; set; }
     public string Name { get; set; }
     public IEnumerable<Movie> Movies { get; set; }
 }

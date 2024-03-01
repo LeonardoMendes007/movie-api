@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieApp.Infra.Data.Persistence.Repositories;
-public class RateRepository
+namespace MovieApp.Domain.Exceptions;
+public class ResourceNotFoundException : Exception
 {
 }

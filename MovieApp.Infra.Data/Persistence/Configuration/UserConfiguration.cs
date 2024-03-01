@@ -1,12 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MovieApp.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieApp.Infra.Data.Persistence.Configuration;
 public class UserConfiguration : IEntityTypeConfiguration<User>
@@ -25,9 +19,5 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasMany(e => e.FavoritesMovies)
             .WithMany(e => e.FavoritesUsers)
             .UsingEntity("tb_favorites_movies");
-
-        builder.HasMany(e => e.RateMovies)
-           .WithMany(e => e.Rates)
-           .UsingEntity<Rate>();
     }
 }
