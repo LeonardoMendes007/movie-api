@@ -5,7 +5,7 @@ using MovieApp.Infra.Data.Persistence;
 using MovieApp.Infra.IoC.AutoMapperConfig;
 using MovieApp.Infra.CrossCutting.Identity.IndentityConfiguration;
 using MovieApp.Domain.Interfaces.Repository;
-using MovieApp.Infra.Data.Persistence.Repositories;
+using MovieApp.Infra.Identity.Persistence.Repositories;
 
 namespace MovieApp.Infra.IoC.DependencyInjection;
 public static class DependencyInjection
@@ -15,7 +15,7 @@ public static class DependencyInjection
     {
         #region Banco de dados
         services.AddDbContext<MovieAppDbContext>(options =>
-           options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+           options.UseSqlServer(configuration.GetConnectionString("ApplicationConnection")));
         #endregion
 
         #region Identity
@@ -32,10 +32,10 @@ public static class DependencyInjection
         services.AddAutoMapper(typeof(AutoMapperConfiguration));
         #endregion
 
-
         #region Repository
         services.AddScoped<IAuthRepository, AuthRepository>();
         #endregion
+
 
         return services;
     }

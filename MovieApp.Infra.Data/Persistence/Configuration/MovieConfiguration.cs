@@ -17,6 +17,8 @@ public class MovieConfiguration : IEntityTypeConfiguration<Movie>
         builder.Property(x => x.CreatedDate).HasColumnName("dt_create").IsRequired();
         builder.Property(x => x.UpdatedDate).HasColumnName("dt_update");
 
+        builder.HasKey(x => x.Id);
+
         builder.HasIndex(x => new { x.Name, x.ReleaseDate}).IsUnique();
 
         builder.HasMany(e => e.UserRating)

@@ -1,7 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MovieApp.API.Response;
 using MovieApp.Application.Commands.Auth;
+using MovieApp.Application.Responses.Auth;
+using System.Net;
 
 namespace MovieApp.API.Controllers;
 [Route("api/[controller]")]
@@ -21,23 +24,23 @@ public class AuthController : ControllerBase
     [HttpPost("Create")]
     public async Task<IActionResult> Register([FromBody] CreateAccountCommand registerAccountCommand)
     {
-        var resp = await _mediator.Send(registerAccountCommand);
+        var result = await _mediator.Send(registerAccountCommand);
 
-        if (resp is null)
+        if (result is null)
             return BadRequest();
 
-        return Ok(resp);
+        return Ok(new ResponseBase<CredentialsResponse>(result, HttpStatusCode.OK));
     }
 
     [HttpPost("Login")]
     public async Task<IActionResult> Login([FromBody] SignInAccountCommand signInAccountCommand)
     {
-        var resp = await _mediator.Send(signInAccountCommand);
+        var result = await _mediator.Send(signInAccountCommand);
 
-        if (resp is null)
+        if (result is null)
             return Unauthorized();
 
-        return Ok(resp);
+        return Ok(new ResponseBase<CredentialsResponse>(result, HttpStatusCode.OK));
     }
 
 }

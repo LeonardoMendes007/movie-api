@@ -3,17 +3,15 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MovieApp.Domain.Entities;
 
 namespace MovieApp.Infra.Data.Persistence.Configuration;
-public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
+public class ApplicationUserConfiguration : IEntityTypeConfiguration<User>
 {
-    public void Configure(EntityTypeBuilder<ApplicationUser> builder)
+    public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.Property(x => x.UserName).HasMaxLength(50).IsRequired();
-        builder.Property(x => x.Email).IsRequired();
+        builder.Property(x => x.Id).HasColumnName("id").HasMaxLength(36);
         builder.Property(x => x.CreatedDate).HasColumnName("CreateDate").IsRequired();
         builder.Property(x => x.UpdatedDate).HasColumnName("UpdateDate");
 
-        builder.HasIndex(x => x.UserName).IsUnique();
-        builder.HasIndex(x => x.Email).IsUnique();
+        builder.HasKey(x => x.Id);
 
         builder.HasMany(e => e.MoviesRating)
         .WithMany(e => e.UserRating)
@@ -22,5 +20,9 @@ public class ApplicationUserConfiguration : IEntityTypeConfiguration<Application
         builder.HasMany(e => e.FavoritesMovies)
             .WithMany(e => e.FavoritesUsers)
             .UsingEntity("tb_favorites_movies");
+
+        
+
+
     }
 }

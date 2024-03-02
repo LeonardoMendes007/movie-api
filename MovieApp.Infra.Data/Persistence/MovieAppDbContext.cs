@@ -1,17 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MovieApp.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieApp.Infra.Data.Persistence;
-public sealed class MovieAppDbContext : IdentityDbContext<ApplicationUser>
+public sealed class MovieAppDbContext : DbContext
 {
-    public DbSet<ApplicationUser> Users { get; set; } = default!;
+    public DbSet<User> Users { get; set; } = default!;
 
     public DbSet<Movie> Movies { get; set; } = default!;
 
