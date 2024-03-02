@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using MovieApp.Domain.Entities;
 using MovieApp.Domain.Interfaces.Repository;
 
@@ -12,25 +13,32 @@ public class AuthRepository : IAuthRepository
         _userManager = userManager;
     }
 
-    public async Task<IdentityResult> RegisterAsync(ApplicationUser authUser, string password)
+    public async Task<ApplicationUser> RegisterAsync(ApplicationUser appUser, string password)
     {
-        return await _userManager.CreateAsync(authUser, password);
+        var identityResult = await _userManager.CreateAsync(appUser);
+        
+        if (identityResult.Succeeded)
+        {
+            return await _userManager.FindByNameAsync(appUser.UserName);
+        }
+
+        return null;
     }
 
-    public async Task<bool> LoginAsync(string userName, string password)
+    public async Task<ApplicationUser> SignInAsync(string userName, string password)
     {
         var userAuth = await _userManager.FindByNameAsync(userName);
-        return (userAuth != null && await _userManager.CheckPasswordAsync(userAuth, password));
+        return (userAuth != null && await _userManager.CheckPasswordAsync(userAuth, password)) ? userAuth : null;
     }
 
-    public async Task<IdentityResult> UpdateAsync(ApplicationUser authUser)
+    public async Task<IdentityResult> UpdateAsync(ApplicationUser appUser)
     {
-        return await _userManager.UpdateAsync(authUser);
+        return await _userManager.UpdateAsync(appUser);
     }
 
-    public async Task<IdentityResult> ChangePassword(ApplicationUser authUser, string currentPassword, string newPassword)
+    public async Task<IdentityResult> ChangePassword(ApplicationUser appUser, string currentPassword, string newPassword)
     {
-        return await _userManager.ChangePasswordAsync(authUser, currentPassword, newPassword);
+        return await _userManager.ChangePasswordAsync(appUser, currentPassword, newPassword);
     }
 
 }

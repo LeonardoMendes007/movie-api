@@ -1,10 +1,4 @@
 ﻿using MovieApp.Application.Responses.Movie;
-using MovieApp.Application.Responses.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieApp.Application.Responses.Rating;
 public class RatingResponse

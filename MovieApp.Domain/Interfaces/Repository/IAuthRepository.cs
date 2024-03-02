@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace MovieApp.Domain.Interfaces.Repository;
 public interface IAuthRepository
 {
-    Task<IdentityResult> RegisterAsync(ApplicationUser authUser, string password);
-    Task<bool> LoginAsync(string userName, string password);
-    Task<IdentityResult> UpdateAsync(ApplicationUser authUser);
-    Task<IdentityResult> ChangePassword(ApplicationUser authUser, string currentPassword, string newPassword);
+    Task<ApplicationUser> RegisterAsync(ApplicationUser appUser, string password);
+    Task<ApplicationUser> SignInAsync(string userName, string password);
+    Task<IdentityResult> UpdateAsync(ApplicationUser appUser);
+    Task<IdentityResult> ChangePassword(ApplicationUser appUser, string currentPassword, string newPassword);
 
 }

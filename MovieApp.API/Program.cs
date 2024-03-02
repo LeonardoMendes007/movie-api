@@ -1,3 +1,4 @@
+using MovieApp.API.Middleware;
 using MovieApp.Infra.IoC.DependencyInjection;
 using System.Text.Json.Serialization;
 
@@ -26,6 +27,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
 
