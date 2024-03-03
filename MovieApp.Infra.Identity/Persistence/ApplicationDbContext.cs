@@ -12,11 +12,15 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.Entity<User>()
-            .HasOne<ApplicationUser>()
-            .WithMany()
-            .HasForeignKey(u => u.ApplicationId)
-            .IsRequired();
+        builder.Entity<ApplicationUser>()
+            .Property(x => x.UserName).IsRequired();
+        builder.Entity<ApplicationUser>()
+            .Property(x => x.Email).IsRequired();
+
+        builder.Entity<ApplicationUser>()
+            .HasIndex(x => x.UserName);
+        builder.Entity<ApplicationUser>()
+            .HasIndex(x => x.Email);
 
         base.OnModelCreating(builder);
     }

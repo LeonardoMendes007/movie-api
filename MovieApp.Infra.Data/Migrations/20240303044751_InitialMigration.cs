@@ -45,7 +45,7 @@ namespace MovieApp.Infra.Data.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", maxLength: 36, nullable: false),
-                    ApplicationId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Identity = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

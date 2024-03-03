@@ -1,15 +1,16 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MovieApp.Application.Responses.Auth;
+using MovieApp.Domain.Dtos.Credentials;
 
 namespace MovieApp.Application.AutoMapper;
 public class DomainToResponse : Profile
 {
     public DomainToResponse()
     {
-        
+        #region CredentialsDto to CredentialsResponse
+
+        CreateMap<CredentialsDto, CredentialsResponse>();
+
+        #endregion
     }
 }

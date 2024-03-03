@@ -12,7 +12,7 @@ using MovieApp.Infra.Identity.Persistence;
 namespace MovieApp.Infra.Identity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240302225753_InitialMigration")]
+    [Migration("20240303044632_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />

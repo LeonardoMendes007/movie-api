@@ -3,7 +3,7 @@
 namespace MovieApp.Domain.Entities;
 public class User : Entity
 {
-    public string ApplicationId { get; set; }
+    public string Identity { get; set; }
     public DateTime CreatedDate { get; set; } = DateTime.Now;
     public DateTime UpdatedDate { get; set; }
     public IEnumerable<Movie> MoviesRating { get; set; }

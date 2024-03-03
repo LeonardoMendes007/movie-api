@@ -1,8 +1,9 @@
-﻿using MovieApp.Domain.Dtos;
+﻿using MovieApp.Domain.Dtos.Account;
+using MovieApp.Domain.Dtos.Credentials;
 
 namespace MovieApp.Domain.Interfaces.Repository;
 public interface IAuthRepository
 {
-    Task<bool> RegisterAsync(CreateUserDto createUserDto, string password);
-    Task<bool> SignInAsync(string userName, string password);
+    Task<CredentialsDto> RegisterAsync(CreateAccountDto createUserDto, string password);
+    Task<CredentialsDto> SignInAsync(string userName, string password);
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using MovieApp.Domain.Dtos;
+using MovieApp.Domain.Dtos.Account;
+using MovieApp.Domain.Dtos.Credentials;
 using MovieApp.Domain.Interfaces.Repository;
 using MovieApp.Infra.Identity.Identity;
 
@@ -17,22 +17,44 @@ public class AuthRepository : IAuthRepository
         _context = context;
     }
 
-    public async Task<bool> RegisterAsync(CreateUserDto createUserDto, string password)
+    public async Task<CredentialsDto> RegisterAsync(CreateAccountDto createUserDto, string password)
     {
-        var appUser = new ApplicationUser() {
+        var applicationUser = new ApplicationUser() {
             UserName = createUserDto.UserName,
             Email = createUserDto.Email
         };
 
-        var identityResult = await _userManager.CreateAsync(appUser, password);
+        var identityResult = await _userManager.CreateAsync(applicationUser, password);
 
-        return identityResult.Succeeded;
+        if (identityResult.Succeeded)
+        {
+            var applicationUserPersist = await _userManager.FindByNameAsync(applicationUser.UserName);
+
+            return new CredentialsDto()
+            {
+                id = Guid.Parse(applicationUserPersist.Id),
+                UserName = applicationUserPersist.UserName,
+                Email = applicationUserPersist.Email
+            };
+        }
+        
+        return null;
     }
 
-    public async Task<bool> SignInAsync(string userName, string password)
+    public async Task<CredentialsDto> SignInAsync(string userName, string password)
     {
-        var userAuth = await _userManager.FindByNameAsync(userName);
-        return userAuth != null && await _userManager.CheckPasswordAsync(userAuth, password);
+        var applicationUserPersist = await _userManager.FindByNameAsync(userName);
+        if(applicationUserPersist != null && await _userManager.CheckPasswordAsync(applicationUserPersist, password))
+        {
+            return new CredentialsDto()
+            {
+                id = Guid.Parse(applicationUserPersist.Id),
+                UserName = applicationUserPersist.UserName,
+                Email = applicationUserPersist.Email
+            };
+        }
+
+        return null;
     }
 
     public async Task Commit()

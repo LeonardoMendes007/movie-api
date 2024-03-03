@@ -7,6 +7,7 @@ public class ApplicationUserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
+        builder.ToTable("tb_user");
         builder.Property(x => x.Id).HasColumnName("id").HasMaxLength(36);
         builder.Property(x => x.CreatedDate).HasColumnName("CreateDate").IsRequired();
         builder.Property(x => x.UpdatedDate).HasColumnName("UpdateDate");
@@ -20,9 +21,5 @@ public class ApplicationUserConfiguration : IEntityTypeConfiguration<User>
         builder.HasMany(e => e.FavoritesMovies)
             .WithMany(e => e.FavoritesUsers)
             .UsingEntity("tb_favorites_movies");
-
-        
-
-
     }
 }
