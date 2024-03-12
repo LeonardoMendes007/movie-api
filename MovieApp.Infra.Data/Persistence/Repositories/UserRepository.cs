@@ -20,45 +20,43 @@ public class UserRepository : IUserRepository
         _dbSet = _movieAppDbContext.Set<User>();
     }
 
-    //public async Task<IEnumerable<Movie>> FindFavoritesMovies(Guid id, Expression<Func<Movie, bool>> filter = null, int skip = 0, int take = 30)
+    //public async task<ienumerable<movie>> findfavoritesmovies(guid id, expression<func<movie, bool>> filter = null, int skip = 0, int take = 30)
     //{
-    //    return await _dbSet.Where(x => x.Id == id.ToString()).Include(x => x.FavoritesMovies).SelectMany(x => x.FavoritesMovies).Where(filter).Take(take).Skip(skip).AsNoTracking().ToListAsync();
+    //    return await _dbset.where(x => x.id == id.tostring()).include(x => x.favoritesmovies).selectmany(x => x.favoritesmovies).where(filter).take(take).skip(skip).asnotracking().tolistasync();
     //}
 
-    //public async Task<User> FindByIdAsync(Guid id)
-    //{
-    //    var applicationUser = await _dbSet.Where(x => x.Id == id.ToString()).AsNoTracking().FirstOrDefaultAsync();
-    //    if (applicationUser is null)
-    //    {
-    //        throw new ResourceNotFoundException();
-    //    }
-    //    return applicationUser;
-    //}
+    public async Task<User> FindByIdAsync(Guid id)
+    {
+        var applicationuser = await _dbSet.Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
+        if (applicationuser is null)
+        {
+            throw new ResourceNotFoundException();
+        }
+        return applicationuser;
+    }
 
-    //public async Task SaveAsync(User user)
-    //{
-    //    await _dbSet.AddAsync(user);
-    //}
+    public async Task SaveAsync(User user)
+    {
+        await _dbSet.AddAsync(user);
+    }
 
-    //public async Task UpdateAsync(User user)
-    //{
-    //    await _dbSet.AddAsync(user);
-    //}
-    //public async Task RemoveAsync(Guid id)
-    //{
-    //    var movie = await _dbSet.FindAsync(id);
-    //    if (movie is null)
-    //    {
-    //        throw new ResourceNotFoundException();
-    //    }
+    public async Task UpdateAsync(User user)
+    {
+        _dbSet.Update(user);
+    }
+    public async Task RemoveAsync(Guid id)
+    {
+        var movie = await _dbSet.FindAsync(id);
+        if (movie is null)
+        {
+            throw new ResourceNotFoundException();
+        }
 
-    //    await _dbSet.AddAsync(movie);
-    //}
+        _dbSet.Remove(movie);
+    }
 
-    //public async Task CommitAsync()
-    //{
-    //    await _movieAppDbContext.SaveChangesAsync();
-    //}
-
-    
+    public async Task CommitAsync()
+    {
+        await _movieAppDbContext.SaveChangesAsync();
+    }
 }

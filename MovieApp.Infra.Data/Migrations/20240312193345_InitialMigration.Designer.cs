@@ -12,7 +12,7 @@ using MovieApp.Infra.Data.Persistence;
 namespace MovieApp.Infra.Data.Migrations
 {
     [DbContext(typeof(MovieAppDbContext))]
-    [Migration("20240303044751_InitialMigration")]
+    [Migration("20240312193345_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -140,7 +140,7 @@ namespace MovieApp.Infra.Data.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("CreateDate");
 
-                    b.Property<string>("Identity")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -148,9 +148,13 @@ namespace MovieApp.Infra.Data.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("UpdateDate");
 
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("tb_user", (string)null);
                 });
 
             modelBuilder.Entity("tb_favorites_movies", b =>

@@ -41,17 +41,18 @@ namespace MovieApp.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "tb_user",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", maxLength: 36, nullable: false),
-                    Identity = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.id);
+                    table.PrimaryKey("PK_tb_user", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -89,15 +90,15 @@ namespace MovieApp.Infra.Data.Migrations
                 {
                     table.PrimaryKey("PK_tb_favorites_movies", x => new { x.FavoritesMoviesId, x.FavoritesUsersId });
                     table.ForeignKey(
-                        name: "FK_tb_favorites_movies_Users_FavoritesUsersId",
-                        column: x => x.FavoritesUsersId,
-                        principalTable: "Users",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_tb_favorites_movies_tb_movie_FavoritesMoviesId",
                         column: x => x.FavoritesMoviesId,
                         principalTable: "tb_movie",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_tb_favorites_movies_tb_user_FavoritesUsersId",
+                        column: x => x.FavoritesUsersId,
+                        principalTable: "tb_user",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -117,15 +118,15 @@ namespace MovieApp.Infra.Data.Migrations
                 {
                     table.PrimaryKey("PK_tb_rating", x => new { x.UserId, x.id });
                     table.ForeignKey(
-                        name: "FK_tb_rating_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_tb_rating_tb_movie_id",
                         column: x => x.id,
                         principalTable: "tb_movie",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_tb_rating_tb_user_UserId",
+                        column: x => x.UserId,
+                        principalTable: "tb_user",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -174,10 +175,10 @@ namespace MovieApp.Infra.Data.Migrations
                 name: "tb_genre");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "tb_movie");
 
             migrationBuilder.DropTable(
-                name: "tb_movie");
+                name: "tb_user");
         }
     }
 }

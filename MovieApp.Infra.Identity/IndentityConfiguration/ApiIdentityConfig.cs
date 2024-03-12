@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MovieApp.Domain.Interfaces.Repository;
 using MovieApp.Infra.Identity.Identity;
+using MovieApp.Infra.Identity.Interfaces.Services;
 using MovieApp.Infra.Identity.Persistence;
-using MovieApp.Infra.Identity.Persistence.Repositories;
+using MovieApp.Infra.Identity.Services;
 
 namespace MovieApp.Infra.CrossCutting.Identity.IndentityConfiguration;
 public static class ApiIdentityConfig
@@ -27,6 +26,10 @@ public static class ApiIdentityConfig
             o.Password.RequireNonAlphanumeric = false;
             o.User.RequireUniqueEmail = true;
         });
+
+        #region Service
+        services.AddScoped<IAuthService, AuthService>();
+        #endregion
 
     }
 }

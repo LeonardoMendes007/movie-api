@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MovieApp.Infra.Data.Persistence;
-using MovieApp.Infra.CrossCutting.Identity.IndentityConfiguration;
-using MovieApp.Domain.Interfaces.Repository;
-using MovieApp.Infra.Identity.Persistence.Repositories;
-using MovieApp.Application.AutoMapper;
 using MovieApp.Application.AutoMapper.AutoMapperConfig;
+using MovieApp.Domain.Interfaces.Repository;
+using MovieApp.Infra.CrossCutting.Identity.IndentityConfiguration;
+using MovieApp.Infra.Data.Persistence;
+using MovieApp.Infra.Data.Persistence.Repositories;
 
 namespace MovieApp.Infra.IoC.DependencyInjection;
 public static class DependencyInjection
@@ -33,8 +32,8 @@ public static class DependencyInjection
         services.AddAutoMapper(typeof(AutoMapperConfiguration));
         #endregion
 
-        #region Repository
-        services.AddScoped<IAuthRepository, AuthRepository>();
+        #region Service
+        services.AddScoped<IUserRepository, UserRepository>();
         #endregion
 
 

@@ -137,7 +137,7 @@ namespace MovieApp.Infra.Data.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("CreateDate");
 
-                    b.Property<string>("Identity")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -145,9 +145,13 @@ namespace MovieApp.Infra.Data.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("UpdateDate");
 
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("tb_user", (string)null);
                 });
 
             modelBuilder.Entity("tb_favorites_movies", b =>
