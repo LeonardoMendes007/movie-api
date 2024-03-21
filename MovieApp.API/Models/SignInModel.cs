@@ -1,4 +1,4 @@
-﻿namespace MovieApp.API.Model;
+﻿namespace MovieApp.API.Models;
 
 public class RegisterModel
 {

@@ -20,10 +20,10 @@ public class UserRepository : IUserRepository
         _dbSet = _movieAppDbContext.Set<User>();
     }
 
-    //public async task<ienumerable<movie>> findfavoritesmovies(guid id, expression<func<movie, bool>> filter = null, int skip = 0, int take = 30)
-    //{
-    //    return await _dbset.where(x => x.id == id.tostring()).include(x => x.favoritesmovies).selectmany(x => x.favoritesmovies).where(filter).take(take).skip(skip).asnotracking().tolistasync();
-    //}
+    public async Task<IEnumerable<Movie>> FindFavoritesMovies(Guid id, Expression<Func<Movie, bool>> filter = null, int skip = 0, int take = 30)
+    {
+        return await _dbSet.Where(x => x.Id == id).Include(x => x.FavoritesMovies).SelectMany(x => x.FavoritesMovies).Where(filter).Take(take).Skip(skip).AsNoTracking().ToListAsync();
+    }
 
     public async Task<User> FindByIdAsync(Guid id)
     {

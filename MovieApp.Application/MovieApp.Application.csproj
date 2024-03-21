@@ -13,9 +13,7 @@
   <ItemGroup>
     <Folder Include="Commands\Rating\" />
     <Folder Include="Commands\User\" />
-    <Folder Include="Handlers\CommandHandlers\User\" />
-    <Folder Include="Handlers\QueriesHandlers\" />
-    <Folder Include="Queries\" />
+    <Folder Include="Handlers\CommandHandlers\" />
   </ItemGroup>
 
   <ItemGroup>
