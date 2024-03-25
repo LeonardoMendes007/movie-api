@@ -1,0 +1,14 @@
+C:\Projetos\Dotnet\movie-app\MovieApp.AuthApi\MovieApp.AuthApi.Identity\bin\Debug\net7.0\MovieApp.AuthApi.Identity.deps.json
+C:\Projetos\Dotnet\movie-app\MovieApp.AuthApi\MovieApp.AuthApi.Identity\bin\Debug\net7.0\MovieApp.AuthApi.Identity.dll
+C:\Projetos\Dotnet\movie-app\MovieApp.AuthApi\MovieApp.AuthApi.Identity\bin\Debug\net7.0\MovieApp.AuthApi.Identity.pdb
+C:\Projetos\Dotnet\movie-app\MovieApp.AuthApi\MovieApp.AuthApi.Identity\obj\Debug\net7.0\MovieApp.AuthApi.Identity.csproj.AssemblyReference.cache
+C:\Projetos\Dotnet\movie-app\MovieApp.AuthApi\MovieApp.AuthApi.Identity\obj\Debug\net7.0\MovieApp.AuthApi.Identity.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projetos\Dotnet\movie-app\MovieApp.AuthApi\MovieApp.AuthApi.Identity\obj\Debug\net7.0\MovieApp.AuthApi.Identity.AssemblyInfoInputs.cache
+C:\Projetos\Dotnet\movie-app\MovieApp.AuthApi\MovieApp.AuthApi.Identity\obj\Debug\net7.0\MovieApp.AuthApi.Identity.AssemblyInfo.cs
+C:\Projetos\Dotnet\movie-app\MovieApp.AuthApi\MovieApp.AuthApi.Identity\obj\Debug\net7.0\MovieApp.AuthApi.Identity.csproj.CoreCompileInputs.cache
+C:\Projetos\Dotnet\movie-app\MovieApp.AuthApi\MovieApp.AuthApi.Identity\obj\Debug\net7.0\MovieApp.AuthApi.Identity.dll
+C:\Projetos\Dotnet\movie-app\MovieApp.AuthApi\MovieApp.AuthApi.Identity\obj\Debug\net7.0\refint\MovieApp.AuthApi.Identity.dll
+C:\Projetos\Dotnet\movie-app\MovieApp.AuthApi\MovieApp.AuthApi.Identity\obj\Debug\net7.0\MovieApp.AuthApi.Identity.pdb
+C:\Projetos\Dotnet\movie-app\MovieApp.AuthApi\MovieApp.AuthApi.Identity\obj\Debug\net7.0\ref\MovieApp.AuthApi.Identity.dll
+C:\Projetos\Dotnet\movie-app\MovieApp.AuthApi\MovieApp.AuthApi.Identity\bin\Debug\net7.0\MovieApp.AuthApi.Identity.runtimeconfig.json
+C:\Projetos\Dotnet\movie-app\MovieApp.AuthApi\MovieApp.AuthApi.Identity\obj\Debug\net7.0\MovieApp.AuthApi.Identity.genruntimeconfig.cache

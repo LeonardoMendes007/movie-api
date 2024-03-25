@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "o5FOQYpO4rUHAXv7Ybs6qkmTSKS2N9fCJXysGc2ZVEQ=",
+  "Source": "MovieApp.AuthApi.API",
+  "BasePath": "_content/MovieApp.AuthApi.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
